@@ -10,8 +10,9 @@ front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
 build:
+  preview_output_directory: public
   install_dependencies_command: npm install
-  preview_docker_image: forestryio/node:12
-  mount_path: "/srv"
+  preview_docker_image: docker run -d --name cockpit -p 8080:80 agentejo/
+  mount_path: public
   working_dir: "/srv"
-  instant_preview_command: npm run develop
+  instant_preview_command: docker build -t agentejo/cockpit:latest . --no-cache
